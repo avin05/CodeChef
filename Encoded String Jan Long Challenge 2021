@@ -1,0 +1,64 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+    public static String ans(String str,int n){
+        HashMap<String,Character> map=new HashMap<String,Character>();
+        StringBuilder res=new StringBuilder();
+        map.put("0000",'a');
+        map.put("0001",'b');
+        map.put("0010",'c');
+        map.put("0011",'d');
+        map.put("0100",'e');
+        map.put("0101",'f');
+        map.put("0110",'g');
+        map.put("0111",'h');
+        map.put("1000",'i');
+        map.put("1001",'j');
+        map.put("1010",'k');
+        map.put("1011",'l');
+        map.put("1100",'m');
+        map.put("1101",'n');
+        map.put("1110",'o');
+        map.put("1111",'p');
+        int i=0;
+        
+        while(i<n){
+            String temp=str.substring(i,i+4);
+        
+            
+           
+            
+            
+            if(map.containsKey(temp))
+            {
+                res.append(map.get(temp));
+            }
+            i=i+4;
+        }
+        return res.toString();
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc=new Scanner(System.in);
+		try {
+		    int t=sc.nextInt();
+		    
+		    while(t-->0){
+		        int n=sc.nextInt();
+		        String str=sc.next();
+		        System.out.println(ans(str,n));
+		    }
+		    
+		} catch(Exception e) {
+		    e.printStackTrace();
+		    return;
+		}
+	}
+}
