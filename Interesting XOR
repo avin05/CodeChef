@@ -1,0 +1,82 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+    public static long b2d(String n){
+        String num = n;
+        long dec_value = 0;
+ 
+        int base = 1;
+ 
+        int len = num.length();
+        for (int i = len - 1; i >= 0; i--) {
+            if (num.charAt(i) == '1')
+                dec_value += base;
+            base = base * 2;
+        }
+ 
+        return dec_value;
+    }
+    public static String d2b(int c){
+        int[] binaryNum = new int[32]; 
+  
+        
+        int i = 0; 
+        while (c > 0) { 
+            binaryNum[i] = c % 2; 
+            c = c / 2; 
+            i++; 
+        } 
+  
+        String ans ="";
+        for (int j = i - 1; j >= 0; j--) 
+            ans=ans+binaryNum[j]; 
+            
+        return ans;
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try{
+		    Scanner sc = new Scanner(System.in);
+		    int t=sc.nextInt();
+		    while(t-->0){
+		    int c = sc.nextInt();
+		    String C = d2b(c);
+		    String A="";
+		    String B="";
+		    if(C.charAt(0) == '1'){
+		        A=A+"1";
+		        B=B+"0";
+		    }
+		    else{
+		        A=A+"0";
+		        B=B+"1";
+		    }
+		    for(int i=1;i<C.length();i++){
+		        if(C.charAt(i)=='0'){
+		            A=A+"1";
+		            B=B+"1";
+		        }
+		        else{
+		            A=A+"0";
+		            B=B+"1";
+		        }
+		    }
+		    long ans = b2d(A)*b2d(B);
+		    
+		    System.out.println(ans);
+		    
+		        
+		    }
+		}
+		catch(Exception e){
+		    return;
+		}
+	}
+}
