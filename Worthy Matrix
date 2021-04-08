@@ -1,0 +1,73 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+    public static int fun(long[][] arr,int n,int m,int k){
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                arr[i][j]+=arr[i-1][j]+arr[i][j-1]-arr[i-1][j-1];
+            }
+        }
+        int ans=0;
+        for(int side =1;side<=n;side++){
+            for(int i=1;i<=n-side+1;i++){
+                int low=1;
+                int high=m-side+1;
+                int flag=0,p=0;
+                
+                while(low<=high){
+                    int mid=low+(high-low)/2;
+                    
+                    long sum= arr[i+side-1][mid+side-1]-arr[i+side-1][mid-1]-arr[i-1][mid+side-1]+arr[i-1][mid-1];
+                    
+                    if(sum>=k*side*side){
+                        high=mid-1;
+                        p=mid;
+                        flag=1;
+                    }
+                    else{
+                        low=mid+1;
+                    }
+                }
+                if(flag==1){
+                    ans+=(m-side-p+2);
+                }
+            }
+        }
+        return ans;
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try {
+		    Scanner sc = new Scanner(System.in);
+		    int t= sc.nextInt();
+		    while(t-->0){
+		        int n=sc.nextInt();
+		        int m = sc.nextInt();
+		        int k = sc.nextInt();
+		        long arr[][]= new long[n+1][m+1];
+		        for(int i=0;i<n+1;i++){
+		            for(int j=0;j<m+1;j++){
+		                if(i==0 || j==0){
+		                arr[i][j]=0;
+		                    
+		                }
+		                else{
+		                    arr[i][j]=sc.nextInt();
+		                }
+		            }
+		        }
+		        System.out.println(fun(arr,n,m,k));
+		    }
+		    
+		} catch(Exception e) {
+		    return;
+		}
+	}
+}
